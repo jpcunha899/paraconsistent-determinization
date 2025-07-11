@@ -63,6 +63,20 @@ delta = {
 }
 """
 
+'''
+# Example 9
+Sigma = ['a', 'b']
+Q = {0, 1, 2, 3, 4}
+initial = 0
+F = [2,4]
+delta = {
+    (0, 'a', 1): (1, 0),
+    (0, 'a', 3): (1, 0),
+    (1, 'b', 2): (1, 0),
+    (3, 'a', 4): (1, 0)
+}
+'''
+
 # -------------------------------
 # Algebraic Operators in [0,1]^2
 # -------------------------------
@@ -100,7 +114,7 @@ def deltastar(q1, w, q2):
 
     result = (0, 1)
     for r in Q:
-        aux = TwistAnd(delta[(q1, w[0], r)], deltastar(r, w[1:], q2))
+        aux = TwistAnd(deltastar(q1, w[:-1], r), delta[(r, w[-1], q2)])
         result = TwistOr(result, aux)
     return result
 
